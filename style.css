@@ -264,7 +264,7 @@ body {
 .hero-title {
     font-family: var(--font-heading);
     font-size: clamp(3.5rem, 8vw, 6.5rem);
-    font-weight: 800;
+    font-weight: 600;
     line-height: 0.95;
     margin-bottom: 1.25rem;
     color: var(--clr-black);
@@ -277,7 +277,7 @@ body {
     font-family: var(--font-mono);
     font-size: 1.25rem;
     font-weight: 600;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.0rem;
     color: var(--clr-black);
     letter-spacing: 0.02em;
 }
@@ -324,7 +324,7 @@ body {
 
 .btn-resume {
     background: var(--clr-coral);
-    color: var(--clr-white);
+    color: var(--clr-black);
     box-shadow: var(--shadow);
 }
 
@@ -490,7 +490,23 @@ body {
     color: var(--clr-black);
 }
 
+/* Hero Tagline Box */
+.hero-tagline {
+    margin-top: 2rem;
+    padding: 1.5rem 2rem;
+    background: var(--clr-white);
+}
 
+.hero-tagline p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--clr-text);
+    margin: 0;
+}
+
+.hero-tagline strong {
+    color: var(--clr-coral);
+}
 
 /* ===== SECTIONS ===== */
 .section {
@@ -586,6 +602,24 @@ body {
 .info-card {
     padding: 1.75rem;
     text-align: center;
+    text-decoration: none !important;
+    color: inherit;
+    display: block;
+    cursor: pointer;
+}
+
+a.info-card,
+a.info-card:link,
+a.info-card:visited,
+a.info-card:hover,
+a.info-card:active,
+a.info-card *,
+a.info-card:link *,
+a.info-card:visited *,
+a.info-card:hover *,
+a.info-card:active * {
+    text-decoration: none !important;
+    color: inherit !important;
 }
 
 .info-icon {
@@ -633,7 +667,34 @@ body {
     color: var(--clr-coral);
 }
 
-/* Education Cards Grid */
+.research-status--accepted {
+    color: #16a34a;
+}
+
+.research-status--review {
+    color: var(--clr-coral);
+}
+
+.btn-preprint {
+    margin-top: 1rem;
+    background: var(--clr-mint);
+    color: var(--clr-black);
+    font-size: 0.85rem;
+    padding: 0.5rem 1.1rem;
+    box-shadow: var(--shadow-sm);
+    align-self: flex-start;
+}
+
+.btn-preprint:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow);
+}
+
+.research-card {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
 .education-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -695,6 +756,13 @@ body {
 .project-img {
     width: 100%;
     height: 210px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+.project-img1 {
+    width: 100%;
+    height: 230px;
     object-fit: cover;
     display: block;
     transition: transform 0.4s ease;
@@ -783,6 +851,14 @@ body {
 .exp-date {
     font-family: var(--font-mono);
     font-size: 0.8rem;
+    color: #555;
+    margin-bottom: 0.75rem;
+}
+
+.exp-supervisor {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-style: italic;
     color: #555;
     margin-bottom: 0.75rem;
 }
