@@ -85,19 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
-    // ===== SKILL PILL RANDOM COLOR ON HOVER =====
-    const colors = ['#FFD43B', '#FF6B9D', '#20C997', '#A9E34B', '#FF8787', '#B197FC', '#74C0FC'];
-
-    document.querySelectorAll('.skill-pill').forEach(pill => {
-        pill.addEventListener('mouseenter', () => {
-            const randomColor = colors[Math.floor(Math.random() * colors.length)];
-            pill.style.background = randomColor;
-        });
-        pill.addEventListener('mouseleave', () => {
-            pill.style.background = 'white';
-        });
-    });
-
     // ===== TILT EFFECT ON PROJECT CARDS =====
     document.querySelectorAll('.project-card-v').forEach(card => {
         card.addEventListener('mousemove', (e) => {
