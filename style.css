@@ -995,13 +995,52 @@ a.info-card:active * {
     position: relative;
 }
 
+.visitor-map-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.visitor-map-label {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--clr-black);
+    background: var(--clr-mint);
+    border: 2px solid var(--clr-black);
+    border-radius: var(--radius-pill);
+    padding: 0.3rem 1rem;
+    margin-bottom: 0.75rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.visitor-map {
+    margin: 0 auto;
+    z-index: 2;
+    position: relative;
+    width: 500px;
+    max-width: 100%;
+    border: 3px solid var(--clr-black);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    line-height: 0; /* removes gap below inline script/img */
+}
+
+.visitor-map * {
+    max-width: 100%;
+    display: block;
+}
+
 /* Stars Background using box-shadow */
 .stars {
     position: absolute;
     top: 0;
     left: 0;
-    width: 2px;
-    height: 2px;
+    width: 1px;
+    height: 1px;
     background: transparent;
     box-shadow: 
         100px 30px #fff, 200px 80px #fff, 300px 50px #fff, 
