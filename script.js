@@ -1,124 +1,112 @@
+/* ==========================================================================
+   Ranjeet Kumbhar — Portfolio JavaScript Functionality
+   ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ===== MOBILE HAMBURGER MENU =====
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('nav-links');
+    // ===== 1. READING PROGRESS BAR =====
+    const progressBar = document.getElementById('progressBar');
+    
+    function updateProgressBar() {
+        if (!progressBar) return;
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        if (totalHeight > 0) {
+            const progress = (window.scrollY / totalHeight) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+    }
+    
+    window.addEventListener('scroll', updateProgressBar);
 
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navLinks.classList.toggle('active');
-    });
+    // ===== 2. MOBILE MENU TOGGLE =====
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
 
-    // Close mobile menu when a link is clicked
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navLinks.classList.remove('active');
+    if (menuToggle && sidebar) {
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            sidebar.classList.toggle('active');
         });
-    });
 
-    // ===== ACTIVE NAV LINK ON SCROLL =====
+        // Close mobile sidebar when clicking a nav item
+        document.querySelectorAll('.sidebar-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                sidebar.classList.remove('active');
+            });
+        });
+    }
+
+    // ===== 3. SCROLLSPY (ACTIVE NAV LINK ON SCROLL) =====
     const sections = document.querySelectorAll('section[id]');
+    const navItems = document.querySelectorAll('.top-nav-item');
 
-    function updateActiveNav() {
-        const scrollY = window.scrollY + 120;
+    function highlightActiveSection() {
+        const scrollPosition = window.scrollY + 140;
 
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.offsetHeight;
             const sectionId = section.getAttribute('id');
-            const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
 
-            if (navLink) {
-                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-                    navLink.classList.add('active');
-                } else {
-                    navLink.classList.remove('active');
-                }
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('href') === `#${sectionId}`) {
+                        item.classList.add('active');
+                    }
+                });
             }
         });
     }
 
-    window.addEventListener('scroll', updateActiveNav);
+    window.addEventListener('scroll', highlightActiveSection);
 
-    // ===== SCROLL REVEAL ANIMATIONS =====
-    const revealElements = () => {
-        const elementsToReveal = document.querySelectorAll(
-            '.section-title-card, .about-card-main, .about-card-principle, .about-card-drives, ' +
-            '.info-card, .exp-card, .project-card-v, .research-card, ' +
-            '.tech-category, .contact-card, .contact-intro'
-        );
+    // ===== 4. RESEARCH CATEGORY FILTERING =====
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const researchItems = document.querySelectorAll('.research-item');
 
-        elementsToReveal.forEach((el) => {
-            if (!el.classList.contains('reveal') && !el.classList.contains('reveal-card')) {
-                if (el.classList.contains('section-title-card') ||
-                    el.classList.contains('contact-intro')) {
-                    el.classList.add('reveal');
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filterValue = btn.getAttribute('data-filter');
+
+            researchItems.forEach(item => {
+                if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                    item.style.display = 'flex';
                 } else {
-                    el.classList.add('reveal-card');
-                    const parent = el.parentElement;
-                    const siblings = parent.querySelectorAll('.reveal-card');
-                    const siblingIndex = Array.from(siblings).indexOf(el);
-                    el.style.transitionDelay = `${siblingIndex * 0.1}s`;
+                    item.style.display = 'none';
                 }
-            }
-        });
-    };
-
-    revealElements();
-
-    // IntersectionObserver for scroll animations
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, {
-        root: null,
-        rootMargin: '0px 0px -60px 0px',
-        threshold: 0.1
-    });
-
-    document.querySelectorAll('.reveal, .reveal-card').forEach(el => {
-        observer.observe(el);
-    });
-
-    // ===== TILT EFFECT ON PROJECT CARDS =====
-    document.querySelectorAll('.project-card-v').forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            const rotateX = (y - centerY) / 40;
-            const rotateY = (centerX - x) / 40;
-
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translate(-2px, -2px)`;
-        });
-
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = '';
+            });
         });
     });
 
-    // ===== PHOTO FRAME HOVER PARALLAX =====
-    const photoFrame = document.querySelector('.photo-frame');
-    if (photoFrame) {
-        const heroPhoto = document.querySelector('.hero-photo');
-        heroPhoto.addEventListener('mousemove', (e) => {
-            const rect = heroPhoto.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width - 0.5;
-            const y = (e.clientY - rect.top) / rect.height - 0.5;
+    // ===== 5. COPY CITATION TO CLIPBOARD =====
+    const copyBtns = document.querySelectorAll('.copy-citation-btn');
+    const toast = document.getElementById('toast');
 
-            photoFrame.style.transform = `rotate(${-2 + y * 3}deg) scale(1.02) translate(${x * 8}px, ${y * 8}px)`;
-        });
-
-        heroPhoto.addEventListener('mouseleave', () => {
-            photoFrame.style.transform = '';
-        });
+    function showToast(message) {
+        if (!toast) return;
+        toast.textContent = message;
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
     }
+
+    copyBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const citationText = btn.getAttribute('data-citation');
+            if (citationText) {
+                navigator.clipboard.writeText(citationText).then(() => {
+                    showToast('📋 Citation copied to clipboard!');
+                }).catch(() => {
+                    showToast('❌ Failed to copy citation');
+                });
+            }
+        });
+    });
 
 });
