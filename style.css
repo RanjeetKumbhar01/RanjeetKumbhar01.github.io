@@ -297,6 +297,12 @@ button {
     font-size: 0.75rem;
 }
 
+.sidebar-email-links {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
 .sidebar-email-link {
     color: var(--text-primary);
     font-weight: 600;
