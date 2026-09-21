@@ -1,0 +1,828 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-GH0VJ8ET25"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-GH0VJ8ET25");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      M.E. Thesis | AI-Enabled Adaptive Controller for Lower-Limb Exoskeletons —
+      Ranjeet Kumbhar
+    </title>
+    <meta
+      name="description"
+      content="M.E. thesis: a Deep RL-tuned model-free adaptive controller (Deep RL-MFAC) for a bilateral 8-DOF lower-limb exoskeleton, validated on sit-to-stand and walking gait in MATLAB/Simulink and Simscape Multibody."
+    />
+    <link rel="canonical" href="https://ranjeetkumbhar.me/thesis.html" />
+    <meta name="theme-color" content="#f9fafb" />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://ranjeetkumbhar.me/thesis.html" />
+    <meta
+      property="og:title"
+      content="M.E. Thesis | AI-Enabled Adaptive Controller for Lower-Limb Exoskeletons"
+    />
+    <meta
+      property="og:description"
+      content="Deep RL-tuned model-free adaptive control for sit-to-stand and walking gait assistance in healthy elderly individuals."
+    />
+    <meta
+      property="og:image"
+      content="https://ranjeetkumbhar.me/images/profile.jpg"
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta
+      property="twitter:title"
+      content="M.E. Thesis | AI-Enabled Adaptive Controller for Lower-Limb Exoskeletons"
+    />
+    <meta
+      property="twitter:description"
+      content="Deep RL-tuned model-free adaptive control for sit-to-stand and walking gait assistance in healthy elderly individuals."
+    />
+    <meta
+      property="twitter:image"
+      content="https://ranjeetkumbhar.me/images/profile.jpg"
+    />
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Thesis",
+        "name": "Design of an AI-Enabled Adaptive Controller for Lower-Limb Exoskeleton Synchronous Motion in Healthy Elderly Individuals",
+        "author": {
+          "@type": "Person",
+          "name": "Ranjeet Kumbhar",
+          "url": "https://ranjeetkumbhar.me/"
+        },
+        "datePublished": "2026-07",
+        "publisher": {
+          "@type": "CollegeOrUniversity",
+          "name": "Thapar Institute of Engineering & Technology"
+        },
+        "url": "https://ranjeetkumbhar.me/thesis.html"
+      }
+    </script>
+
+    <!-- Google Fonts (Inter — Professional Academic Font) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- DevIcons & Favicon -->
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Thesis page styles live in style.css (thesis block) -->
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <!-- Reading Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- ==================== STICKY TOP NAVIGATION ==================== -->
+    <nav class="top-nav" id="topNav" aria-label="Thesis section navigation">
+      <ul class="top-nav-list">
+        <li><a href="index.html" class="top-nav-item">Home</a></li>
+        <li><a href="#overview" class="top-nav-item active">Overview</a></li>
+        <li><a href="#method" class="top-nav-item">Method</a></li>
+        <li><a href="#results" class="top-nav-item">Results</a></li>
+        <li><a href="#conclusions" class="top-nav-item">Conclusions</a></li>
+        <li><a href="#publications" class="top-nav-item">Publications</a></li>
+      </ul>
+    </nav>
+
+    <div class="layout-container">
+      <!-- ==================== FIXED LEFT SIDEBAR ==================== -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-inner">
+          <!-- Profile Avatar & Status -->
+          <div class="profile-header">
+            <div class="profile-img-wrapper">
+              <img
+                src="images/profile.jpg"
+                alt="Ranjeet Kumbhar"
+                class="profile-img"
+                width="512"
+                height="771"
+                fetchpriority="high"
+                decoding="async"
+              />
+            </div>
+          </div>
+
+          <!-- Name & Title -->
+          <div class="profile-info">
+            <h1 class="profile-name">Ranjeet Kumbhar</h1>
+            <p class="profile-title">AI/ML · Deep Learning · Robotics</p>
+
+            <div class="status-badge">
+              <span class="dot"></span> Open to PhD &amp; Research Roles
+            </div>
+          </div>
+
+          <!-- Direct Email Display -->
+          <div class="sidebar-email-box">
+            <svg
+              class="email-icon"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+            </svg>
+            <div class="sidebar-email-links">
+              <a
+                href="mailto:rkumbhar_me24@thapar.edu"
+                class="sidebar-email-link"
+                >rkumbhar_me24@thapar.edu</a
+              >
+              <a
+                href="mailto:kumbhar.ranjeet01@gmail.com"
+                class="sidebar-email-link"
+                >kumbhar.ranjeet01@gmail.com</a
+              >
+            </div>
+          </div>
+
+          <!-- Action Button -->
+          <div class="sidebar-actions">
+            <a href="CV.pdf" target="_blank" class="btn btn-primary btn-block">
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path
+                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                ></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+              </svg>
+              CV
+            </a>
+          </div>
+
+          <!-- Social Link Bars (Full Width) -->
+          <div class="sidebar-social-bars">
+            <a
+              href="https://linkedin.com/in/ranjeet-kumbhar"
+              target="_blank"
+              rel="noopener"
+              class="social-bar-item"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                />
+              </svg>
+              <span class="social-bar-text">LinkedIn /ranjeet-kumbhar</span>
+            </a>
+            <a
+              href="https://scholar.google.com/citations?user=slhJlRgAAAAJ&hl=en"
+              target="_blank"
+              rel="noopener"
+              class="social-bar-item"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.8 3.8v7.2h2.4v-5.3l4.8 3.8 4.8-3.8v5.3h2.4v-7.2L24 9.5 12 0z"
+                />
+              </svg>
+              <span class="social-bar-text">Google Scholar</span>
+            </a>
+            <a
+              href="https://github.com/RanjeetKumbhar01"
+              target="_blank"
+              rel="noopener"
+              class="social-bar-item"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                />
+              </svg>
+              <span class="social-bar-text">GitHub @RanjeetKumbhar01</span>
+            </a>
+            <a
+              href="https://x.com/Ranjeet_Potter"
+              target="_blank"
+              rel="noopener"
+              class="social-bar-item"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                />
+              </svg>
+              <span class="social-bar-text">X @Ranjeet_Potter</span>
+            </a>
+          </div>
+        </div>
+      </aside>
+
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- ==================== MOBILE HEADER ==================== -->
+      <header class="mobile-header">
+        <a href="#overview" class="mobile-logo">
+          <span class="logo-avatar"
+            ><img
+              src="images/profile.jpg"
+              alt="Ranjeet Kumbhar"
+              width="30"
+              height="30"
+          /></span>
+          <span class="logo-name">Ranjeet Kumbhar</span>
+        </a>
+        <button
+          class="mobile-menu-toggle"
+          id="menuToggle"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+          aria-controls="sidebar"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </header>
+
+      <!-- ==================== MAIN CONTENT AREA ==================== -->
+      <main class="main-content thesis-layout" id="main">
+        <a class="home-link" href="index.html">&larr; Back to homepage</a>
+
+        <div class="thesis-columns">
+          <div class="thesis-main">
+            <!-- ===== OVERVIEW SECTION ===== -->
+            <section class="content-section" id="overview">
+              <div class="section-header">
+                <h2 class="section-title">Thesis Overview</h2>
+                <div class="section-line"></div>
+              </div>
+
+              <div class="content-card">
+                <div class="thesis-header">
+                  <span class="project-type">M.E. CSE Thesis · July 2026</span>
+                  <h3 class="thesis-name">
+                    Design of an AI-Enabled Adaptive Controller for Lower-Limb
+                    Exoskeleton Synchronous Motion in Healthy Elderly
+                    Individuals
+                  </h3>
+                  <p class="thesis-institution">
+                    Department of Computer Science and Engineering, Thapar
+                    Institute of Engineering &amp; Technology, Patiala ·
+                    Supervised by
+                    <a
+                      href="https://csed.thapar.edu/facultydetails/OTgy"
+                      target="_blank"
+                      rel="noopener"
+                      >Dr. Ravinder Kumar (CSED)</a
+                    >
+                    and
+                    <a
+                      href="https://med.thapar.edu/facultydetails/MTM0OA=="
+                      target="_blank"
+                      rel="noopener"
+                      >Dr. Appaso M. Gadade (MED)</a
+                    >
+                  </p>
+                </div>
+                <p class="body-text thesis-desc">
+                  Lower-limb exoskeletons for healthy elderly users must track
+                  sit-to-stand and walking-gait trajectories under changing
+                  loads. Fixed-gain controllers degrade across motion phases,
+                  so this thesis adds an RL supervisory gain scheduler to a
+                  model-free adaptive controller with online RBF estimation.
+                </p>
+                <div class="tag-cloud thesis-tags">
+                  <span class="tag">Lower-Limb Exoskeleton</span>
+                  <span class="tag">Deep RL-MFAC</span>
+                  <span class="tag">RL Gain Scheduling</span>
+                  <span class="tag">RBF Neural Estimator</span>
+                  <span class="tag">Simscape Multibody</span>
+                  <span class="tag">OpenSim</span>
+                </div>
+              </div>
+
+              <div class="stat-band" aria-label="Key results at a glance">
+                <div class="stat">
+                  <span class="stat-value">0.078°</span>
+                  <span class="stat-label"
+                    >avg STS tracking error — 60% below PID</span
+                  >
+                </div>
+                <div class="stat">
+                  <span class="stat-value">0.32° / 0.24°</span>
+                  <span class="stat-label"
+                    >avg gait error, right / left leg — up to 85% below
+                    PID</span
+                  >
+                </div>
+                <div class="stat">
+                  <span class="stat-value">−79%</span>
+                  <span class="stat-label"
+                    >max error cut from RL scheduling alone</span
+                  >
+                </div>
+                <div class="stat">
+                  <span class="stat-value">12 Nm</span>
+                  <span class="stat-label"
+                    >mid-motion torque hits absorbed</span
+                  >
+                </div>
+              </div>
+            </section>
+
+            <!-- ===== METHOD SECTION ===== -->
+            <section class="content-section" id="method">
+              <div class="section-header">
+                <h2 class="section-title">How It Works</h2>
+                <div class="section-line"></div>
+              </div>
+
+              <div class="content-card">
+                <div class="media-grid">
+                  <figure class="thesis-figure media-main">
+                    <picture>
+                      <source srcset="images/exo.webp" type="image/webp" />
+                      <img
+                        src="images/exo.png"
+                        alt="Lower-limb exoskeleton system illustration"
+                        loading="lazy"
+                        decoding="async"
+                        width="1000"
+                        height="558"
+                      />
+                    </picture>
+                    <figcaption>
+                      The bilateral 8-DOF lower-limb exoskeleton: hip rotation,
+                      hip flexion, knee, and ankle joints per leg.
+                    </figcaption>
+                  </figure>
+                  <figure class="thesis-figure media-gif">
+                    <img
+                      src="images/Exo_STS.gif"
+                      alt="MATLAB simulation animation of the exoskeleton performing sit-to-stand"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <figcaption>
+                      Sit-to-stand animation (MATLAB/Simscape).
+                    </figcaption>
+                  </figure>
+                  <figure class="thesis-figure media-gif">
+                    <img
+                      src="images/exo_walk.gif"
+                      alt="MATLAB simulation animation of the exoskeleton walking gait"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <figcaption>
+                      Walking gait animation (MATLAB/Simscape).
+                    </figcaption>
+                  </figure>
+                </div>
+                <figure class="thesis-figure flow-figure">
+                  <svg
+                    viewBox="0 0 680 300"
+                    role="img"
+                    aria-label="Control-loop diagram: OpenSim reference flows through ultra-local plus RBF estimation and backstepping to the exoskeleton, while an RL scheduler retunes the gains from live tracking error"
+                  >
+                    <defs>
+                      <marker
+                        id="flowArr"
+                        viewBox="0 0 10 10"
+                        refX="8"
+                        refY="5"
+                        markerWidth="7"
+                        markerHeight="7"
+                        orient="auto-start-reverse"
+                      >
+                        <path d="M0,0 L10,5 L0,10 z" class="flow-arr" />
+                      </marker>
+                    </defs>
+                    <rect x="6" y="20" width="152" height="60" rx="8" class="flow-node" />
+                    <text x="82" y="45" class="flow-title">OpenSim reference</text>
+                    <text x="82" y="62" class="flow-sub">trajectory qd</text>
+                    <rect x="184" y="20" width="152" height="60" rx="8" class="flow-node" />
+                    <text x="260" y="45" class="flow-title">Ultra-local + RBF</text>
+                    <text x="260" y="62" class="flow-sub">estimates lumped F(t)</text>
+                    <rect x="362" y="20" width="152" height="60" rx="8" class="flow-node" />
+                    <text x="438" y="45" class="flow-title">Backstepping law</text>
+                    <text x="438" y="62" class="flow-sub">torque &#964;</text>
+                    <rect x="540" y="20" width="134" height="60" rx="8" class="flow-node" />
+                    <text x="607" y="45" class="flow-title">Exoskeleton</text>
+                    <text x="607" y="62" class="flow-sub">8-DOF plant q</text>
+                    <line x1="158" y1="50" x2="182" y2="50" class="flow-edge" marker-end="url(#flowArr)" />
+                    <line x1="336" y1="50" x2="360" y2="50" class="flow-edge" marker-end="url(#flowArr)" />
+                    <line x1="514" y1="50" x2="538" y2="50" class="flow-edge" marker-end="url(#flowArr)" />
+                    <rect x="200" y="168" width="320" height="56" rx="8" class="flow-node-accent" />
+                    <text x="360" y="191" class="flow-title">RL supervisory scheduler</text>
+                    <text x="360" y="208" class="flow-sub">scales gains &#215; [0.5, 1.5]</text>
+                    <line x1="349" y1="82" x2="349" y2="166" class="flow-edge" marker-end="url(#flowArr)" />
+                    <text x="341" y="130" class="flow-tag" text-anchor="end">e &#183; q &#183; phase</text>
+                    <line x1="438" y1="166" x2="438" y2="82" class="flow-edge" marker-end="url(#flowArr)" />
+                    <text x="446" y="130" class="flow-tag" text-anchor="start">gain scale</text>
+                    <path d="M607,84 V282 H171 V62" class="flow-edge" marker-end="url(#flowArr)" />
+                    <text x="390" y="274" class="flow-tag" text-anchor="middle">measured q</text>
+                  </svg>
+                  <figcaption>
+                    The control loop: RL retunes the backstepping gains as
+                    loading changes across motion phases.
+                  </figcaption>
+                </figure>
+                <ol class="steps-list">
+                  <li>
+                    <strong>Estimate the unknown.</strong> A second-order
+                    ultra-local model lumps inertia, gravity, Coriolis
+                    effects, and disturbances into one term, estimated online
+                    by a per-joint Gaussian RBF network — no explicit system
+                    identification needed.
+                  </li>
+                  <li>
+                    <strong>Track robustly.</strong> A Lyapunov-based
+                    backstepping law with a robust auxiliary term converts the
+                    estimate into smooth torque commands within joint limits.
+                  </li>
+                  <li>
+                    <strong>Adapt the gains.</strong> An RL agent observes
+                    tracking errors, joint states, and movement phase, and
+                    scales the backstepping gains within [0.5, 1.5] as loading
+                    changes across phases.
+                  </li>
+                </ol>
+                <p class="body-text thesis-desc">
+                  Validated in MATLAB/Simulink + Simscape Multibody against
+                  OpenSim reference trajectories, and benchmarked against PID,
+                  LQR, SMC, and conventional MFAC under identical settings.
+                  Full derivations are in Chapter 5 of the thesis.
+                </p>
+              </div>
+            </section>
+            <!-- ===== RESULTS SECTION ===== -->
+            <section class="content-section" id="results">
+              <div class="section-header">
+                <h2 class="section-title">Results</h2>
+                <div class="section-line"></div>
+              </div>
+
+              <div class="takeaway">
+                <strong>Takeaway:</strong> the proposed controller posts the
+                lowest average tracking error on both tasks — 0.078° on
+                sit-to-stand and 0.315° / 0.241° on right / left-leg gait.
+              </div>
+
+              <div class="content-card chart-card">
+                <h3 class="thesis-name">Average tracking RMSE by controller</h3>
+                <p class="body-text">
+                  Lower is better; the proposed controller is highlighted.
+                </p>
+                <div class="chart-duo">
+                  <div class="chart-pane">
+                    <p class="chart-subhead">Sit-to-Stand</p>
+                    <div class="chart-wrap">
+                      <svg
+                        id="rmseChartSts"
+                        role="img"
+                        aria-label="Bar chart of average sit-to-stand tracking RMSE by controller"
+                      ></svg>
+                      <div
+                        class="chart-tooltip"
+                        role="status"
+                        aria-live="polite"
+                        hidden
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="chart-pane">
+                    <p class="chart-subhead">Walking Gait</p>
+                    <div class="chart-wrap">
+                      <svg
+                        id="rmseChartGait"
+                        role="img"
+                        aria-label="Bar chart of average walking gait tracking RMSE by controller"
+                      ></svg>
+                      <div
+                        class="chart-tooltip"
+                        role="status"
+                        aria-live="polite"
+                        hidden
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+                <p class="chart-caption">
+                  Averages computed from per-joint Tables 6.2 (STS) and 6.5
+                  (right-leg gait). Hover any bar for exact values.
+                </p>
+              </div>
+
+              <div class="content-card chart-card">
+                <h3 class="thesis-name">What RL supervision adds</h3>
+                <p class="body-text">
+                  RMSE reduction per joint versus the same controller without
+                  RL gain scheduling (Table 6.3).
+                </p>
+                <div class="chart-wrap">
+                  <svg
+                    id="td3Chart"
+                    role="img"
+                    aria-label="Bar chart of RMSE reduction from RL supervision by joint"
+                  ></svg>
+                </div>
+                <p class="chart-caption">
+                  MAE gains reach 75.14% at the ankle. Trade-off: peak error
+                  rises at hip and knee, since the reward optimizes cumulative
+                  tracking and effort rather than peak deviations.
+                </p>
+                <p class="chart-subhead">Walking gait — RMSE cut per joint</p>
+                <div class="chart-wrap">
+                  <svg
+                    id="td3ChartGait"
+                    role="img"
+                    aria-label="Bar chart of gait RMSE reduction from RL supervision by joint, right and left legs"
+                  ></svg>
+                </div>
+                <p class="chart-caption">
+                  Right and left legs versus the same controller without RL
+                  (Tables 6.7–6.8).
+                </p>
+              </div>
+
+              <div class="content-card chart-card">
+                <h3 class="thesis-name">Same accuracy, far less effort</h3>
+                <p class="body-text">
+                  Summed RMS actuator torque across hip, knee, and ankle
+                  during sit-to-stand. Lower is better.
+                </p>
+                <div class="chart-wrap">
+                  <svg
+                    id="torqueChart"
+                    role="img"
+                    aria-label="Bar chart of total RMS torque by controller"
+                  ></svg>
+                  <div
+                    class="chart-tooltip"
+                    role="status"
+                    aria-live="polite"
+                    hidden
+                  ></div>
+                </div>
+                <p class="chart-caption">
+                  Sum of per-joint RMS torques (Table 6.2). The proposed
+                  controller is lowest at every joint.
+                </p>
+              </div>
+            </section>
+            <!-- ===== CONCLUSIONS SECTION ===== -->
+            <section class="content-section" id="conclusions">
+              <div class="section-header">
+                <h2 class="section-title">Conclusions</h2>
+                <div class="section-line"></div>
+              </div>
+
+              <div class="content-card">
+                <h3 class="thesis-name">Key findings</h3>
+                <ul class="key-list">
+                  <li>
+                    Lowest average error on both tasks: 0.078° (STS) and
+                    0.315° / 0.241° (gait), with the largest gains where
+                    loading varies most across the cycle.
+                  </li>
+                  <li>
+                    Phase-aware RL gain scheduling beats fixed gains on every
+                    actuated joint — the core claim, validated twice over.
+                  </li>
+                  <li>
+                    High accuracy comes with lower, smoother torque than all
+                    benchmarks, and survives 12 Nm external hits.
+                  </li>
+                  <li>
+                    One architecture covers two distinct locomotion tasks, and
+                    the co-simulation setup is reusable for future designs.
+                  </li>
+                </ul>
+              </div>
+
+              <div class="content-card">
+                <h3 class="thesis-name">What is next</h3>
+                <ul class="key-list">
+                  <li>
+                    Hardware trials to capture actuator dynamics, sensor
+                    noise, and real human-robot interaction forces.
+                  </li>
+                  <li>
+                    Motion-capture references from a larger, diverse elderly
+                    population, including asymmetric movement.
+                  </li>
+                  <li>
+                    Intent signals (EMG, ground reaction forces), online
+                    adaptation, and more tasks: stairs, slopes, stand-to-sit.
+                  </li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- ===== PUBLICATIONS SECTION ===== -->
+            <section class="content-section" id="publications">
+              <div class="section-header">
+                <h2 class="section-title">Publications</h2>
+                <div class="section-line"></div>
+              </div>
+
+              <div class="research-list">
+                <article class="research-item" id="thesis-paper-hybrid">
+                  <div class="research-meta-top">
+                    <span class="journal-badge journal-conference"
+                      >Conference</span
+                    >
+                  </div>
+                  <h3 class="research-paper-title">
+                    A Novel Hybrid Controller for Sit-to-Stand Assistance using
+                    a Simscape Model based Lower-Limb Exoskeleton
+                  </h3>
+                  <p class="research-venue">
+                    R. Kumbhar, R. Singh, A. M. Gadade, A. Singla, I. Hussain ·
+                    Proc. Int. Conf. Modelling, Identification and Control
+                    (ICMIC), 2026 (Accepted)
+                  </p>
+                  <div class="tag-cloud">
+                    <span class="tag">Hybrid Controller</span>
+                    <span class="tag">Sit-to-Stand</span>
+                    <span class="tag">Simscape</span>
+                    <span class="tag">Lower-Limb Exoskeleton</span>
+                  </div>
+                  <div class="research-actions">
+                    <a
+                      href="https://doi.org/10.48550/arXiv.2604.03766"
+                      target="_blank"
+                      rel="noopener"
+                      class="btn btn-sm btn-primary"
+                    >
+                      View Preprint ↗
+                    </a>
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-ghost copy-citation-btn"
+                      data-citation="https://doi.org/10.48550/arXiv.2604.03766"
+                    >
+                      Copy Link
+                    </button>
+                  </div>
+                </article>
+
+                <article class="research-item" id="thesis-paper-rl">
+                  <div class="research-meta-top">
+                    <span class="journal-badge journal-review">Preprint</span>
+                  </div>
+                  <h3 class="research-paper-title">
+                    Deep RL-Tuned Model-Free Adaptive Control for Lower-Limb
+                    Exoskeletons During Sit-to-Stand Transitions
+                  </h3>
+                  <p class="research-venue">
+                    R. Kumbhar, A. M. Gadade, R. Singh, A. Singla, R. Kumar ·
+                    ASME Journal of Mechanisms and Robotics, 2026 (Under
+                    Review)
+                  </p>
+                  <div class="tag-cloud">
+                    <span class="tag">Deep RL</span>
+                    <span class="tag">Model-Free Adaptive Control</span>
+                    <span class="tag">Lower-Limb Exoskeleton</span>
+                    <span class="tag">Sit-to-Stand</span>
+                  </div>
+                  <div class="research-actions">
+                    <a
+                      href="https://doi.org/10.48550/arXiv.2606.22040"
+                      target="_blank"
+                      rel="noopener"
+                      class="btn btn-sm btn-primary"
+                    >
+                      View Preprint ↗
+                    </a>
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-ghost copy-citation-btn"
+                      data-citation="https://doi.org/10.48550/arXiv.2606.22040"
+                    >
+                      Copy Link
+                    </button>
+                  </div>
+                </article>
+              </div>
+            </section>
+          </div>
+
+          <!-- ===== RIGHT INSIGHT RAIL ===== -->
+          <aside class="thesis-rail" aria-label="Key insights">
+            <div class="rail-card">
+              <h3 class="rail-title">Why it matters</h3>
+              <ul class="rail-list">
+                <li>
+                  <strong>Adaptive beats fixed.</strong> RL-scheduled gains
+                  top PID, LQR, SMC, and MFAC on every joint, both tasks.
+                </li>
+                <li>
+                  <strong>One controller, two tasks.</strong> The same
+                  architecture handles sit-to-stand and walking gait.
+                </li>
+                <li>
+                  <strong>Precise yet gentle.</strong> Lowest tracking error
+                  with lower, smoother torque than every benchmark.
+                </li>
+                <li>
+                  <strong>Robust to shocks.</strong> Holds tracking through
+                  12 Nm mid-motion torque hits.
+                </li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+
+        <!-- Footer -->
+        <footer class="main-footer">
+          <p>© 2026 Ranjeet Kumbhar · All rights reserved</p>
+          <p>Built with HTML · CSS · JavaScript</p>
+        </footer>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <button
+      type="button"
+      class="back-to-top"
+      id="backToTop"
+      aria-label="Back to top"
+    >
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        aria-hidden="true"
+      >
+        <line x1="12" y1="19" x2="12" y2="5"></line>
+        <polyline points="5 12 12 5 19 12"></polyline>
+      </svg>
+    </button>
+
+    <!-- Main JavaScript (includes thesis results toggle) -->
+    <script src="script.js" defer></script>
+  </body>
+</html>
