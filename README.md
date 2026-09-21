@@ -6,7 +6,7 @@ This repository contains the source code for my personal portfolio website.
 
 ## 🌐 Live Website
 
-[ranjeetkumbhar01.github.io](https://RanjeetKumbhar01.github.io/)
+[ranjeetkumbhar.me](https://ranjeetkumbhar.me/)
 
 ## 🛠️ Built With
 
@@ -16,7 +16,7 @@ This repository contains the source code for my personal portfolio website.
 
 ## 👨‍💻 About Me
 
-I am a final-year M.E. student specializing in AI/ML, Deep Learning, and Robotics. I thrive in ambiguous, research-heavy environments taking problems from fuzzy ideas to working prototypes.
+I am an M.E. graduate in Computer Science specializing in AI/ML, Deep Learning, and Robotics. I thrive in ambiguous, research-heavy environments taking problems from fuzzy ideas to working prototypes.
 
 ## 📬 Contact
 
