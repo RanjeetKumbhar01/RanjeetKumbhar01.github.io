@@ -895,6 +895,15 @@ a.edu-institution:hover {
     color: var(--text-secondary);
 }
 
+.research-authors {
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+}
+
+.research-authors strong {
+    color: var(--text-primary);
+}
+
 .tag-cloud {
     display: flex;
     flex-wrap: wrap;
